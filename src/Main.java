@@ -42,13 +42,14 @@ public class Main {
         graph.put("G", Arrays.asList("F", "B"));
     }
 
-    // Indices: 0=Edinburgh, 1=Stirling, 2=Perth, 3=Dundee, 4=Inverness
+    // ПРАВИЛЬНЫЙ ГРАФ (твои данные)
+    // 0=Edinburgh, 1=Glasgow, 2=Stirling, 3=Perth, 4=Dundee
     private static void buildWeightedGraph() {
         cityIndexToName.put("0", "Edinburgh");
-        cityIndexToName.put("1", "Stirling");
-        cityIndexToName.put("2", "Perth");
-        cityIndexToName.put("3", "Dundee");
-        cityIndexToName.put("4", "Inverness");
+        cityIndexToName.put("1", "Glasgow");
+        cityIndexToName.put("2", "Stirling");
+        cityIndexToName.put("3", "Perth");
+        cityIndexToName.put("4", "Dundee");
 
         weightedGraph.put("0", new ArrayList<>());
         weightedGraph.put("1", new ArrayList<>());
@@ -56,16 +57,16 @@ public class Main {
         weightedGraph.put("3", new ArrayList<>());
         weightedGraph.put("4", new ArrayList<>());
 
-        addRoad("0", "1", 36);   //edinburgh - Stirling
-        addRoad("0", "2", 44);   // einburgh - perth
-        addRoad("1", "2", 31);   // Stirling  - perth
-        addRoad("1", "3", 50);   // stirling  - dundee
-        addRoad("2", "3", 21);   // Perth     - dundee
-        addRoad("2", "4", 112);  // Perth     - Inverness
-        addRoad("3", "4", 100);  // Dundee    - Inverness
+        // ТВОИ ПРАВИЛЬНЫЕ РЁБРА И ВЕСА
+        addRoad("0", "1", 70);   // Edinburgh - Glasgow
+        addRoad("0", "2", 50);   // Edinburgh - Stirling
+        addRoad("0", "3", 100);  // Edinburgh - Perth
+        addRoad("1", "2", 50);   // Glasgow - Stirling
+        addRoad("2", "3", 40);   // Stirling - Perth
+        addRoad("3", "4", 60);   // Perth - Dundee
     }
 
-    //  undirected weighted edge between two cities
+    // Undirected weighted edge between two cities
     private static void addRoad(String cityA, String cityB, int distance) {
         weightedGraph.get(cityA).add(new int[]{Integer.parseInt(cityB), distance});
         weightedGraph.get(cityB).add(new int[]{Integer.parseInt(cityA), distance});
@@ -144,15 +145,15 @@ public class Main {
             System.out.println(entry.getKey() + " - " + entry.getValue());
         }
 
-        System.out.print("Enter start city number: ");
+        System.out.print("Enter start city number (0-4): ");
         String source = scanner.nextLine().trim();
-        System.out.print("Enter destination city number: ");
+        System.out.print("Enter destination city number (0-4): ");
         String destination = scanner.nextLine().trim();
 
         findShortestPath(source, destination);
     }
 
-    // Dijkstra using PriorityQueue - always visits closest unvisited city next
+    // Dijkstra using PriorityQueue
     private static void findShortestPath(String source, String destination) {
         int totalCities = weightedGraph.size();
 

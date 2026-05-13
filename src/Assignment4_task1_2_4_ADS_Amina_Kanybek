@@ -132,13 +132,13 @@ TASK 4 - Shortest Path: Edinburgh to Dundee
 (Dijkstra's Algorithm)
 
 Scottish road network:
-Edinburgh -> Stirling:  36 miles
-Edinburgh -> Perth:     44 miles
-Stirling  -> Perth:     31 miles
-Stirling  -> Dundee:    50 miles
-Perth     -> Dundee:    21 miles
-Perth     -> Inverness: 112 miles
-Dundee    -> Inverness: 100 miles
+
+Edinburgh – Glasgow: 70
+Edinburgh – Stirling: 50
+Edinburgh – Perth: 100
+Glasgow – Stirling: 50
+Stirling – Perth: 40
+Perth – Dundee: 60
 
 Dijkstra's Algorithm step by step:
 
@@ -171,5 +171,5 @@ Step 3: Visit Perth (closest unvisited, distance=44)
 Step 4: Visit Dundee (closest unvisited, distance=65)
   Destination reached!
 
-Shortest path: Edinburgh -> Perth -> Dundee
-Total distance: 65 miles
+Shortest path: Edinburgh → Stirling → Perth → Dundee
+Total distance: 150 miles
